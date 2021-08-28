@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from os import system
+import subprocess
 
 class ejecuta_GUI(QMainWindow):
     def __init__(self):
@@ -13,7 +13,7 @@ class ejecuta_GUI(QMainWindow):
     def usrRegistrar(self):
         self.actCerradura.setEnabled(False)
         self.showRes.setText("Activando Usuario. Por favor espere...")
-        system("python camera.py --first_name Name --last_name LastName --maxFileNumber 10")
+        subprocess.run("python camera.py --first_name Juan --last_name Camaney --maxFileNumber 10")
         self.actCerradura.setEnabled(True)
 
 
