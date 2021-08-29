@@ -2,16 +2,16 @@ from scipy.spatial.distance import cosine
 import mtcnn
 from keras.models import load_model
 from utils import *
-import pyfirmata
+#import pyfirmata
 
-puerto = "\\.\COM9"  # Puerto COM de emulación en USB
-LedRed = (13)  # PIN donde va conectado el LED Rojo
-LedGreen = (12)  # PIN donde va conectado el LED Verde
+#puerto = "\\.\COM9"  # Puerto COM de emulación en USB
+#LedRed = (13)  # PIN donde va conectado el LED Rojo
+#LedGreen = (12)  # PIN donde va conectado el LED Verde
 
 # Conexión con placa Arduino
-print("Conectando con Arduino por USB...")
-tarjeta = pyfirmata.Arduino(puerto)
-print("Conectado a Arduino por USB...")
+#print("Conectando con Arduino por USB...")
+#tarjeta = pyfirmata.Arduino(puerto)
+#print("Conectado a Arduino por USB...")
 
 def recognize(img,
               detector,
@@ -41,28 +41,28 @@ def recognize(img,
             cv2.rectangle(img, pt_1, pt_2, (0, 0, 255), 2)
             cv2.putText(img, name, pt_1, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 1)
 
-            print("Encendiendo LED Rojo...")
-            tarjeta.digital[LedRed].write(1)
-            print("Encendido LED Rojo...")
-            tarjeta.pass_time(3)
-            print("Apagando LED Rojo...")
-            tarjeta.digital[LedRed].write(0)
-            print("Apagado LED Rojo...")
-            tarjeta.pass_time(3)
+            #print("Encendiendo LED Rojo...")
+            #tarjeta.digital[LedRed].write(1)
+            #print("Encendido LED Rojo...")
+            #tarjeta.pass_time(3)
+            #print("Apagando LED Rojo...")
+            #tarjeta.digital[LedRed].write(0)
+            #print("Apagado LED Rojo...")
+            #tarjeta.pass_time(3)
 
         else:
             cv2.rectangle(img, pt_1, pt_2, (0, 255, 0), 2)
             cv2.putText(img, name + f'__{distance:.2f}', (pt_1[0], pt_1[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 1,
                         (0, 200, 200), 2)
 
-            print("Encendiendo LED Verde...")
-            tarjeta.digital[LedGreen].write(1)
-            print("Encendido LED Verde...")
-            tarjeta.pass_time(3)
-            print("Apagando LED Verde...")
-            tarjeta.digital[LedGreen].write(0)
-            print("Apagado LED Verde...")
-            tarjeta.pass_time(3)
+            #print("Encendiendo LED Verde...")
+            #tarjeta.digital[LedGreen].write(1)
+            #print("Encendido LED Verde...")
+            #tarjeta.pass_time(3)
+            #print("Apagando LED Verde...")
+            #tarjeta.digital[LedGreen].write(0)
+            #print("Apagado LED Verde...")
+            #tarjeta.pass_time(3)
 
     return img
 
