@@ -16,7 +16,9 @@ class ejecuta_GUI(QMainWindow):
         self.etiqNombre.setVisible(False)
         self.etiqApellido.setVisible(False)
         self.save.setVisible(False)
+        self.cancelButton.setVisible(False)
         self.registroUsr.clicked.connect(self.usrRegistrar)
+        self.actCerradura.clicked.connect(self.unlock)
 
     def usrRegistrar(self):
         self.showRes.setText("Por favor inserte su nombre y apellido")
@@ -28,8 +30,10 @@ class ejecuta_GUI(QMainWindow):
         self.apellido.setVisible(True)
         self.etiqNombre.setVisible(True)
         self.etiqApellido.setVisible(True)
+        self.cancelButton.setVisible(True)
 
         self.save.clicked.connect(self.usrActivar)
+        self.cancelButton.clicked.connect(self.cancelFunction)
 
     def usrActivar(self):
         self.showRes.setText("Activando Usuario. Por favor espere...")
@@ -58,6 +62,29 @@ class ejecuta_GUI(QMainWindow):
             self.apellido.setVisible(False)
             self.etiqNombre.setVisible(False)
             self.etiqApellido.setVisible(False)
+
+    def unlock(self):
+        self.showRes.setText("Desbloqueando la cerradura. \nPor favor espere...")
+
+        self.registroUsr.setEnabled(False)
+        self.cancelButton.setVisible(True)
+
+        system("python face_recognizer.py")
+
+        self.cancelButton.clicked.connect(self.cancelFunction)
+
+    def cancelFunction(self):
+        self.showRes.setText("Seleccione una opción.")
+
+        self.registroUsr.setEnabled(True)
+        self.registroUsr.setVisible(True)
+        self.actCerradura.setVisible(True)
+        self.save.setVisible(False)
+        self.nombre.setVisible(False)
+        self.apellido.setVisible(False)
+        self.etiqNombre.setVisible(False)
+        self.etiqApellido.setVisible(False)
+        self.cancelButton.setVisible(False)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
